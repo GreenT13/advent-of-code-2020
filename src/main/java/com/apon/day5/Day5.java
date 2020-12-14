@@ -30,18 +30,11 @@ public class Day5 {
     }
 
     private static Integer parseLine(String line) {
-        return 8 * convertBinaryToDecimal(line.substring(0, 7), 'B') + convertBinaryToDecimal(line.substring(7), 'R');
+        return 8 * convertBinaryToDecimal(line.substring(0, 7), 'B', 'F') + convertBinaryToDecimal(line.substring(7), 'R', 'L');
     }
 
-    private static int convertBinaryToDecimal(String input, char one) {
-        int number = 0;
-        char[] inputArray = input.toCharArray();
-        for (int i = 0; i < input.length(); i++) {
-            if (inputArray[i] == one) {
-                number += Math.pow(2, input.length() - i - 1);
-            }
-        }
-
-        return number;
+    private static int convertBinaryToDecimal(String input, char one, char zero) {
+        String inputAsBinaryNumber = input.replace(one, '1').replace(zero, '0');
+        return Integer.valueOf(inputAsBinaryNumber, 2);
     }
 }
